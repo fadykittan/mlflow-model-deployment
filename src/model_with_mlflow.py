@@ -138,5 +138,11 @@ def main():
 if __name__ == "__main__":
     mlflow.set_tracking_uri("http://18.204.219.186:5000")
     mlflow.set_experiment("mlflow_deploy_1")
-    with mlflow.start_run():
+    
+    with mlflow.start_run() as run:
+        run_id = run.info.run_id
         main()
+        model_uri = f"runs:/{run_id}/model"
+        model_version = mlflow.register_model(model_uri, "my_wine")
+        print(model_uri)
+        print(model_version)
