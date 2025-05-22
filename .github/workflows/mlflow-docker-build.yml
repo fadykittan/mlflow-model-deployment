@@ -26,7 +26,7 @@ jobs:
       - name: Download MFflow Model Artifacts
         run: | 
           mlflow artifacts download \
-            --artifact-uri model:/my_wine/1 \
+            --artifact-uri models:/my_wine/1 \
             --dst-path ./model
 
       - name: Build Docker Image
@@ -40,4 +40,4 @@ jobs:
 
       - name: Push Docker Image
         run: docker push ghcr.io/${{ github.repository_owner }}/my_wine:latest
-        
+
